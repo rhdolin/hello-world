@@ -24,7 +24,7 @@ def findSubjectVariants(subject, region):
 	return r.json()
 
 gene=st.text_input("Enter valid gene symbol", value="EGFR")
-subject=st.text_input("Enter subject",value="FLATIRON1")
+subject=st.text_input("Enter subject",value="HG00403")
 
 geneResponse=translateGene(gene)
 region=geneResponse[0]["build38Coordinates"]
