@@ -23,13 +23,26 @@ def findSubjectVariants(subject, region):
 	r=requests.get(url, headers=headers)
 	return r.json()
 
+@st.cache
+def findSubjectDxImplications(subject, condition):
+	url='https://fhir-gen-ops.herokuapp.com/subject-operations/phenotype-operations/$find-subject-dx-implications?subject='+subject+'&conditions='+condition
+	headers={'Accept': 'application/json'}
+	r=requests.get(url, headers=headers)
+	return r.json()
+
 gene=st.text_input("Enter valid gene symbol", value="EGFR")
 subject=st.text_input("Enter subject",value="HG00403")
 
 geneResponse=translateGene(gene)
 region=geneResponse[0]["build38Coordinates"]
 
+st.write("findSubjectVariants output:")
 st.write(findSubjectVariants(subject,region))
+
+condition='https://www.ncbi.nlm.nih.gov/medgen|C3469186'
+
+st.write("findSubjectDxImplications output:")
+st.write(findSubjectDxImplications(subject,condition))
 
 
 
