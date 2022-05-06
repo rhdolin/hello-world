@@ -25,7 +25,7 @@ evidenceList=[]
 variantList=[]
 
 st.title("Genetic Screening")
-st.write("This application screens a population for CDC Tier 1 conditions.")
+st.write("This application screens a popl for CDC Tier 1 conditions.")
 
 for i in findPopulationDxImplications()["parameter"][0]["part"]:
 	if i["name"]=="subject":
