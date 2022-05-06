@@ -5,81 +5,13 @@ import requests
 
 st.title("Title","title")
 
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
+st.code('st.title("Title","title")',"python")
 
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
+st.latex(r'''
+     a + ar + a r^2 + a r^3 + \cdots + a r^{n-1} =
+     \sum_{k=0}^{n-1} ar^k =
+     a \left(\frac{1-r^{n}}{1-r}\right)
+     ''')
 
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.header("Header","h1")
-
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
-
-st.write("adsl;adsjl;dfaklj;fda ;lfda slkfdaklj ;adsflk;j fasd;lkj adfslkj;fadsl;k adsfl;kjd afl;k asdfl;k daflk;adfs j")
+clicked = st.button("click there")
+st.write(clicked)
