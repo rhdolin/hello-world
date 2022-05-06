@@ -1,86 +1,64 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import requests
-import json
-
-st.title("Gene indirection")
-st.write("Supply a gene symbol, and automatically call find-subject-variants")
-
+from st_aggrid import GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 
 @st.cache
-def translateGene(geneSymbol):
-	url='https://fhir-gen-ops.herokuapp.com/utilities/get-feature-coordinates?gene='+ geneSymbol
-	headers={'Accept': 'application/json'}
-	r=requests.get(url, headers=headers)
-	return r.json()	
-
-
-@st.cache
-def findSubjectVariants(subject, region):
-	url='https://fhir-gen-ops.herokuapp.com/subject-operations/genotype-operations/$find-subject-variants?subject='+subject+'&ranges='+region+'&includeVariants=false'
+def findPopulationDxImplications():
+	url='https://fhir-gen-ops.herokuapp.com/population-operations/phenotype-operations/$find-population-dx-implications?conditions=https://www.ncbi.nlm.nih.gov/medgen|C0677776,https://www.ncbi.nlm.nih.gov/medgen|C4552100,https://www.ncbi.nlm.nih.gov/medgen|C0020445&includePatientList=true'
 	headers={'Accept': 'application/json'}
 	r=requests.get(url, headers=headers)
 	return r.json()
 
 @st.cache
-def findSubjectDxImplications(subject, condition):
-	url='https://fhir-gen-ops.herokuapp.com/subject-operations/phenotype-operations/$find-subject-dx-implications?subject='+subject+'&conditions='+condition
+def findSubjectDxImplications(subject):
+	url='https://fhir-gen-ops.herokuapp.com/subject-operations/phenotype-operations/$find-subject-dx-implications?subject='+subject+'&conditions=https://www.ncbi.nlm.nih.gov/medgen|C0677776,https://www.ncbi.nlm.nih.gov/medgen|C4552100,https://www.ncbi.nlm.nih.gov/medgen|C0020445'
 	headers={'Accept': 'application/json'}
 	r=requests.get(url, headers=headers)
 	return r.json()
 
-gene=st.text_input("Enter valid gene symbol", value="EGFR")
-subject=st.text_input("Enter subject",value="HG00403")
+resultList=[]
+patientList=[]
+conditionList=[]
+clinSigList=[]
+evidenceList=[]
+variantList=[]
 
-geneResponse=translateGene(gene)
-region=geneResponse[0]["build38Coordinates"]
+st.title("Genetic Screening")
+st.write("This application screens a population for CDC Tier 1 conditions.")
 
-st.write("findSubjectVariants output:")
-st.write(findSubjectVariants(subject,region))
+for i in findPopulationDxImplications()["parameter"][0]["part"]:
+	if i["name"]=="subject":
+		resultList.append(i["valueString"])
 
-condition='https://www.ncbi.nlm.nih.gov/medgen|C3469186'
+for i in resultList:
+	dxImplications=findSubjectDxImplications(i)
+	for j in dxImplications["parameter"]:
+		patientList.append(i)
+		for k in j["part"]:
+			if k["name"] == "implication":
+				# parse condition, clinical significance, evidence
+				for l in k["resource"]["component"]:
+					if l["code"]["coding"][0]["code"]=="53037-8":
+						try: 
+							clinSigList.append(l["valueCodeableConcept"]["coding"][0]["display"])
+						except KeyError: 
+							clinSigList.append(l["valueCodeableConcept"]["text"])
+					elif l["code"]["coding"][0]["code"]=="81259-4":
+						conditionList.append(l["valueCodeableConcept"]["coding"][0]["display"])
+					elif l["code"]["coding"][0]["code"]=="93044-6":
+						evidenceList.append(l["valueCodeableConcept"]["text"])					
+			elif k["name"] == "variant":
+				# parse variant
+				for l in k["resource"]["component"]:
+					if l["code"]["coding"][0]["code"]=="81252-9":
+						variantList.append(l["valueCodeableConcept"]["coding"][0]["display"])
 
-st.write("findSubjectDxImplications output:")
-st.write(findSubjectDxImplications(subject,condition))
+outputTable=pd.DataFrame({
+    'Patient': patientList,
+    'Condition': conditionList,
+    'Variant': variantList,
+    'Clinical Significance': clinSigList,
+    'Evidence': evidenceList})
+AgGrid(outputTable)
 
-
-
-# Variant NC_000007.14:55174771:GGAATTAAGAGAAGC: (is in CIViC)
-
-#     "build37Coordinates": "NC_000007.13:55086709-55279321",
-#     "build38Coordinates": "NC_000007.14:55019016-55211628",
-
-
-# DATE_COLUMN = 'date/time'
-# DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
-#          'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
-
-# @st.cache
-# def load_data(nrows):
-#     data = pd.read_csv(DATA_URL, nrows=nrows)
-#     lowercase = lambda x: str(x).lower()
-#     data.rename(lowercase, axis='columns', inplace=True)
-#     data[DATE_COLUMN] = pd.to_datetime(data[DATE_COLUMN])
-#     return data
-
-# # Create a text element and let the reader know the data is loading.
-# data_load_state = st.text('Loading data...')
-# # Load 10,000 rows of data into the dataframe.
-# data = load_data(10000)
-# # Notify the reader that the data was successfully loaded.
-# data_load_state.text("Done! (using st.cache)")
-
-# if st.checkbox('Show raw data'):
-#     st.subheader('Raw data')
-#     st.write(data)
-
-# st.subheader('Number of pickups by hour')
-# hist_values = np.histogram(
-#     data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
-# st.bar_chart(hist_values)
-
-# hour_to_filter = st.slider('hour', 0, 23, 17)  # min: 0h, max: 23h, default: 17h
-# filtered_data = data[data[DATE_COLUMN].dt.hour == hour_to_filter]
-# st.subheader(f'Map of all pickups at {hour_to_filter}:00')
-# st.map(filtered_data)
