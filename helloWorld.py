@@ -9,11 +9,18 @@ df=pd.read_csv('data/product.csv')
 
 gb=GridOptionsBuilder.from_dataframe(df)
 
+
+gb.configure_default_column(
+	resizable=True,
+	filterable=True,
+	sorteable=True,
+	editable=True)
+
 gb.configure_column("ING",
 	header_name="ING",
 	cellRenderer=JsCode(""" 
 		function (params) 
-		{return '<a href="https://api.pharmgkb.org/v1/infobutton?mainSearchCriteria.v.c='+params.value+'">'+params.value+'</a>'}
+		{return '<a target="_blank" href="https://api.pharmgkb.org/v1/infobutton?mainSearchCriteria.v.c='+params.value+'">'+params.value+'</a>'}
 		""").js_code,
 	)
 go=gb.build()
