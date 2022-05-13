@@ -1,17 +1,21 @@
 import streamlit as st
+import numpy as np
 import pandas as pd
 import requests
+import random
+from st_aggrid import JsCode, GridOptionsBuilder, AgGrid, GridUpdateMode, DataReturnMode
 
+df=pd.read_csv('data/product.csv')
 
-st.title("Title","title")
+gb=GridOptionsBuilder.from_dataframe(df)
 
-st.code('st.title("Title","title")',"python")
+gb.configure_column("ING",
+	header_name="ING",
+	cellRenderer=JsCode(""" 
+		function (params) 
+		{return '<a href="https://api.pharmgkb.org/v1/infobutton?mainSearchCriteria.v.c='+params.value+'">'+params.value+'</a>'}
+		""").js_code,
+	)
+go=gb.build()
 
-st.latex(r'''
-     a + ar + a r^2 + a r^3 + \cdots + a r^{n-1} =
-     \sum_{k=0}^{n-1} ar^k =
-     a \left(\frac{1-r^{n}}{1-r}\right)
-     ''')
-
-clicked = st.button("click there")
-st.write(clicked)
+AgGrid(df, gridOptions=go, allow_unsafe_jscode=True)
