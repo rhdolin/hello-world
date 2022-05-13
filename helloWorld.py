@@ -16,6 +16,10 @@ gb.configure_default_column(
 	sorteable=True,
 	editable=True)
 
+gb.configure_pagination(
+	enabled=True
+	)
+
 gb.configure_column("ING",
 	header_name="ING",
 	cellRenderer=JsCode(""" 
