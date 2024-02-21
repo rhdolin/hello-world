@@ -52,8 +52,8 @@ def getMedicationList(subject):
 
 
 st.title("PGx Screening")
-st.markdown("This app illustrates [FHIR Genomics Operations](http://build.fhir.org/ig/HL7/genomics-reporting/operations.html) find-subject-haplotypes and \
-     find-subject-tx-implications. Select patient from dropdown. List of potential drug-gene interactions are shown in right column. \
+st.markdown("This app illustrates [FHIR Genomics Operations](http://build.fhir.org/ig/HL7/genomics-reporting/operations.html) **find-subject-haplotypes** and \
+     **find-subject-tx-implications**. Select patient from dropdown. List of potential drug-gene interactions are shown in right column. \
      The patient's med list is shown in left column, where those meds with PGx interactions are flagged.")
 
 
