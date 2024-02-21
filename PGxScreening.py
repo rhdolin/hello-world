@@ -32,7 +32,8 @@ def findSubjectTxImplications(subject, haplotypes):
 
 
 def getMedicationList(subject):
-    with open('genomics-apps/data/product.csv') as productFile:
+    # with open('genomics-apps/data/product.csv') as productFile:
+    with open('data/product.csv') as productFile:
         products = csv.reader(productFile, delimiter=',', quotechar='"')
         productList = []
         for row in products:
@@ -89,23 +90,22 @@ except KeyError:
 
 if count > 0:
     for i in implications["parameter"]:
-        for j in i["part"]:
-            if j["name"] == "implication":
-                # get evidenceLevel, medicationCode, medicationName, implication
-                for l in j["resource"]["component"]:
-                    if l["code"]["coding"][0]["code"] == "93044-6":
-                        evidenceLevel.append(l["valueCodeableConcept"]["text"])
-                    elif l["code"]["coding"][0]["code"] == "51963-7":
-                        medicationCode.append(l["valueCodeableConcept"]["coding"][0]["code"])
-                        medicationName.append(l["valueCodeableConcept"]["coding"][0]["display"])
-                    elif l["code"]["coding"][0]["code"] == "predicted-therapeutic-implication":
-                        implication.append(l["valueCodeableConcept"]["text"])
-            elif j["name"] == "genotype":
-                # get genotype, PharmGKBID
-                genotype.append(j["resource"]["valueCodeableConcept"]["coding"][0]["code"])
-                for l in j["resource"]["component"]:
-                    if l["code"]["coding"][0]["code"] == "81252-9":
-                        PharmGKBID.append("https://www.pharmgkb.org/gene/"+l["valueCodeableConcept"]["coding"][0]["code"])
+        if i["name"] == "implication":
+            # get evidenceLevel, medicationCode, medicationName, implication
+            for l in i["resource"]["component"]:
+                if l["code"]["coding"][0]["code"] == "93044-6":
+                    evidenceLevel.append(l["valueCodeableConcept"]["text"])
+                elif l["code"]["coding"][0]["code"] == "51963-7":
+                    medicationCode.append(l["valueCodeableConcept"]["coding"][0]["code"])
+                    medicationName.append(l["valueCodeableConcept"]["coding"][0]["display"])
+                elif l["code"]["coding"][0]["code"] == "predicted-therapeutic-implication":
+                    implication.append(l["valueCodeableConcept"]["text"])
+        elif i["name"] == "genotype":
+            # get genotype, PharmGKBID
+            genotype.append(i["resource"]["valueCodeableConcept"]["coding"][0]["code"])
+            for l in i["resource"]["component"]:
+                if l["code"]["coding"][0]["code"] == "81252-9":
+                    PharmGKBID.append("https://www.pharmgkb.org/gene/"+l["valueCodeableConcept"]["coding"][0]["code"])
 
 with col2:
     inxData = (pd.DataFrame({
