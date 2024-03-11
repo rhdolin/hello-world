@@ -83,8 +83,8 @@ if st.sidebar.button("Run"):
         effect_weight = float(polygenicScoreModels[3][itemNumber])
         if item == pgs_id:
             if GRCh37_SPDI.split(":")[2]!=GRCh37_SPDI.split(":")[3]: # effect allele is not wildtype
-                # variant = findSubjectSpecificVariants(subject,GRCh37_SPDI) # returns an error if NCBI SPDI services are down
-                variant = findSubjectSpecificVariants_alt(subject,GRCh37_SPDI)
+                variant = findSubjectSpecificVariants(subject,GRCh37_SPDI) # returns an error if NCBI SPDI services are down
+                # variant = findSubjectSpecificVariants_alt(subject,GRCh37_SPDI)
                 # st.write(variant.json())
                 if variant.json()["parameter"][0]["part"][1]["valueBoolean"]==False: 
                     dose=0
